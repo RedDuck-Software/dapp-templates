@@ -1,46 +1,37 @@
 import React, { useEffect } from 'react';
 import {
-  Box,
+  Button,
   Card,
   CardBody,
   CardHeader,
-  Text,
+  Flex,
   Grid,
   GridItem,
   Heading,
-  StackDivider,
-  Stack,
-  SkeletonText,
   SkeletonCircle,
-  Flex,
-  BoxProps,
+  SkeletonText,
+  Stack,
+  StackDivider,
+  Text,
   useBreakpointValue,
-  Button,
   useClipboard,
   useToast,
 } from '@chakra-ui/react';
+import { useIsMobile, useIsMounted } from '../../hooks';
 import { useAccount, useBalance } from 'wagmi';
-import { Blockies, useIsMobile } from '@templates/shared';
+import { CardItem } from '../CardItem';
+import { Blockies } from '../Blockies';
 
-type CardItemProps = {
-  header: React.ReactNode;
-} & BoxProps;
-const CardItem: React.FC<CardItemProps> = ({ header, children, ...rest }) => {
-  return (
-    <Box {...rest}>
-      <Heading size="xs" textTransform="uppercase">
-        {header}
-      </Heading>
-      {children}
-    </Box>
-  );
+export type DashboardProps = {
+  ssr?: boolean;
 };
 
-export const Dashboard = () => {
+export const Dashboard: React.FC<DashboardProps> = ({ ssr }) => {
+  const isMounted = useIsMounted();
   const isMobile = useIsMobile();
   const { isConnected, address } = useAccount();
   const { data: balance, isSuccess } = useBalance({ address });
-  const { onCopy, hasCopied } = useClipboard(address ?? '');
+  const { onCopy, hasCopied } = useClipboard(isMounted ? address ?? '' : '');
   const toast = useToast();
   const displayedAddress =
     useBreakpointValue(
@@ -52,10 +43,13 @@ export const Dashboard = () => {
             address,
           ]
         : ['', ''],
+      {
+        ssr,
+      },
     ) ?? '';
 
   useEffect(() => {
-    if (isConnected) {
+    if (isConnected && isMounted) {
       toast({
         title: 'Wallet connected.',
         description: "You've successfully connected wallet.",
@@ -67,7 +61,7 @@ export const Dashboard = () => {
         position: 'top-right',
       });
     }
-  }, [isConnected]);
+  }, [isConnected, isMounted]);
 
   return (
     <Grid
@@ -87,7 +81,7 @@ export const Dashboard = () => {
                 header={
                   <Flex gap={4} alignItems="baseline">
                     Address
-                    {address && (
+                    {address && isMounted && (
                       <Button
                         size="xs"
                         onClick={() => {
@@ -107,10 +101,13 @@ export const Dashboard = () => {
                   spacing={4}
                   mt={4}
                 >
-                  <SkeletonCircle isLoaded={isConnected} size="48px">
+                  <SkeletonCircle
+                    isLoaded={isConnected && isMounted}
+                    size="48px"
+                  >
                     <Blockies address={address!} size={48} />
                   </SkeletonCircle>
-                  {isConnected ? (
+                  {isConnected && isMounted ? (
                     <Text isTruncated textAlign="center" as="span">
                       {displayedAddress}
                     </Text>
@@ -125,10 +122,12 @@ export const Dashboard = () => {
               </CardItem>
               <CardItem header="Balance">
                 <Flex alignItems="center" gap={4} mt={4}>
-                  <SkeletonText isLoaded={!!balance} noOfLines={1}>
-                    <Text>
-                      {balance?.formatted} <b>{balance?.symbol}</b>
-                    </Text>
+                  <SkeletonText isLoaded={!!balance && isMounted} noOfLines={1}>
+                    {isMounted && (
+                      <Text>
+                        {balance?.formatted} <b>{balance?.symbol}</b>
+                      </Text>
+                    )}
                   </SkeletonText>
                 </Flex>
               </CardItem>
@@ -139,3 +138,5 @@ export const Dashboard = () => {
     </Grid>
   );
 };
+
+export default Dashboard;

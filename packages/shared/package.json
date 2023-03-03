@@ -10,6 +10,12 @@
     "prepare": "run-s prepare:*",
     "prepare:tsc": "tsc --project tsconfig.dist.json"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "dependencies": {
     "@download/blockies": "^1.0.3"
   },

@@ -9,6 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.17",
+    "@chakra-ui/react": "^2.5.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@rainbow-me/rainbowkit": "^0.11.0",
+    "ethers": "^5.7.2",
+    "framer-motion": "^6.5.1",
     "@types/node": "^18.14.4",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -16,7 +23,10 @@
     "eslint-config-next": "13.2.3",
     "next": "^13.2.3",
     "react": "^18.2.0",
+    "react-icons": "^3.11.0",
     "react-dom": "^18.2.0",
+    "wagmi": "^0.11.7",
+    "@templates/shared": "^1.0.0",
     "typescript": "^4.9.5"
   }
 }
