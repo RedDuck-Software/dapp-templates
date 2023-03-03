@@ -1,8 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import React from 'react';
-import { Box, Button, HStack, Image, Stack, Tag } from '@chakra-ui/react';
-import { RenderIf } from '../RenderIf';
-import { useIsMobile } from '../../hooks/useIsMobile';
+import { Box, Button, Image, Stack, Tag } from '@chakra-ui/react';
+import { RenderIf, useIsMobile } from '@templates/shared';
 
 export const ConnectWalletButton: React.FC = () => {
   const isMobile = useIsMobile();

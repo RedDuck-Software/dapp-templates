@@ -3,7 +3,6 @@ import {
   getDefaultWallets,
   WalletList,
 } from '@rainbow-me/rainbowkit';
-import { SUPPORTED_NETWORKS } from './networks';
 import {
   argentWallet,
   imTokenWallet,
@@ -11,6 +10,7 @@ import {
   omniWallet,
   trustWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+import { SUPPORTED_NETWORKS } from '@templates/shared';
 
 const chains = SUPPORTED_NETWORKS;
 const shimDisconnect = true;

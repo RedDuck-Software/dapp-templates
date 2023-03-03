@@ -13,15 +13,20 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { Logo } from './Logo';
-import { ConnectWalletButton } from '../ConnectWalletButton';
-import { useIsMobile } from '../../hooks/useIsMobile';
+import { useIsMobile } from '../../hooks';
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 export type HeaderProps = {
   header: string;
+  connectWalletButton: React.ReactNode;
+  logo: string;
 };
 
-export const Header: React.FC<HeaderProps> = ({ header }) => {
+export const Header: React.FC<HeaderProps> = ({
+  header,
+  connectWalletButton,
+  logo,
+}) => {
   const isMobile = useIsMobile();
 
   const { isOpen, onClose, onToggle } = useDisclosure();
@@ -42,10 +47,10 @@ export const Header: React.FC<HeaderProps> = ({ header }) => {
       ) : (
         <>
           <HStack>
-            <Logo height="60px" />
+            <Logo height="60px" src={logo} />
             <Heading colorScheme="red">{header}</Heading>
           </HStack>
-          <ConnectWalletButton />
+          {connectWalletButton}
         </>
       )}
 
@@ -54,9 +59,7 @@ export const Header: React.FC<HeaderProps> = ({ header }) => {
         <DrawerContent>
           <DrawerCloseButton variant="outline" colorScheme="red" />
           <DrawerHeader>{header}</DrawerHeader>
-          <DrawerBody>
-            <ConnectWalletButton />
-          </DrawerBody>
+          <DrawerBody>{connectWalletButton}</DrawerBody>
         </DrawerContent>
       </Drawer>
     </Flex>

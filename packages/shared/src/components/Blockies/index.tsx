@@ -8,7 +8,7 @@ export type BlockiesProps = {
   size: number;
 };
 
-const Blockies: React.FC<BlockiesProps> = ({ size, address }) => {
+export const Blockies: React.FC<BlockiesProps> = ({ size, address }) => {
   const [dataUrl, setDataUrl] = useState<string>('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -38,5 +38,3 @@ const Blockies: React.FC<BlockiesProps> = ({ size, address }) => {
     </>
   );
 };
-
-export default Blockies;

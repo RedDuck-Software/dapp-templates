@@ -16,3 +16,6 @@ package-lock.json
 yarn-error.log
 
 /.idea
+
+packages/*/dist
+templates/*/dist

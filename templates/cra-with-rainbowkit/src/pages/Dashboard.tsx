@@ -14,20 +14,13 @@ import {
   SkeletonCircle,
   Flex,
   BoxProps,
-  Editable,
-  EditablePreview,
-  EditableInput,
-  useBreakpoint,
   useBreakpointValue,
-  Tag,
   Button,
   useClipboard,
   useToast,
 } from '@chakra-ui/react';
 import { useAccount, useBalance } from 'wagmi';
-import { RenderIf } from '../components/RenderIf';
-import Blockies from '../components/Blockies';
-import { useIsMobile } from '../hooks/useIsMobile';
+import { Blockies, useIsMobile } from '@templates/shared';
 
 type CardItemProps = {
   header: React.ReactNode;
