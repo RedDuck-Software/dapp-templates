@@ -1,7 +1,7 @@
 import { Header } from '@templates/shared';
-import { ConnectWalletButton } from '@/components/ConnectWalletButton';
 import { Flex } from '@chakra-ui/react';
 import React from 'react';
+import { ConnectWalletButton } from '@templates/shared-rainbowkit';
 
 export const withLayout =
   <T extends Record<string, unknown>>(Component: React.FC<T>) =>

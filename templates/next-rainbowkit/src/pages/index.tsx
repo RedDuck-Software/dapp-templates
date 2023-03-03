@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Create Next App</title>
+        <title>Next + RainbowKit</title>
       </Head>
       <Dashboard ssr />
     </>

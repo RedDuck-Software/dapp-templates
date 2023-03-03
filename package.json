@@ -18,6 +18,7 @@
   "scripts": {
     "prepare": "run-s prepare:*",
     "prepare:shared": "yarn workspace @templates/shared prepare",
+    "prepare:shared-rainbowkit": "yarn workspace @templates/shared-rainbowkit prepare",
     "build": "run-s prepare build:*",
     "build:cra-with-rainbowkit": "yarn workspace @templates/cra-rainbowkit build",
     "build:next-with-rainbowkit": "yarn workspace @templates/next-rainbowkit build",

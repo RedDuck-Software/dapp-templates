@@ -2,8 +2,8 @@ import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import { Header } from '@templates/shared';
 import { Outlet } from 'react-router-dom';
-import { ConnectWalletButton } from './ConnectWalletButton';
 import LogoImg from '../assets/img/logo.svg';
+import { ConnectWalletButton } from '@templates/shared-rainbowkit';
 
 export const AppRoot: React.FC = () => {
   return (
