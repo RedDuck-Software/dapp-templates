@@ -19,11 +19,11 @@
     "prepare": "run-s prepare:*",
     "prepare:shared": "yarn workspace @templates/shared prepare",
     "build": "run-s prepare build:*",
-    "build:cra-with-rainbowkit": "yarn workspace @templates/cra-with-rainbowkit build",
-    "build:next-with-rainbowkit": "yarn workspace @templates/next-with-rainbowkit build",
+    "build:cra-with-rainbowkit": "yarn workspace @templates/cra-rainbowkit build",
+    "build:next-with-rainbowkit": "yarn workspace @templates/next-rainbowkit build",
     "start": "run-p start:*",
-    "start:cra-with-rainbowkit": "yarn workspace @templates/cra-with-rainbowkit start",
-    "start:next-with-rainbowkit": "yarn workspace @templates/next-with-rainbowkit dev"
+    "start:cra-with-rainbowkit": "yarn workspace @templates/cra-rainbowkit start",
+    "start:next-with-rainbowkit": "yarn workspace @templates/next-rainbowkit dev"
   },
   "keywords": [],
   "author": "Ilya Kubariev",

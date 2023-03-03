@@ -122,7 +122,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ ssr }) => {
               </CardItem>
               <CardItem header="Balance">
                 <Flex alignItems="center" gap={4} mt={4}>
-                  <SkeletonText isLoaded={!!balance && isMounted} noOfLines={1}>
+                  <SkeletonText
+                    isLoaded={!!balance && isMounted}
+                    noOfLines={1}
+                    w="100%"
+                  >
                     {isMounted && (
                       <Text>
                         {balance?.formatted} <b>{balance?.symbol}</b>
