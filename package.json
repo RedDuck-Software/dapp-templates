@@ -18,10 +18,12 @@
   "scripts": {
     "prepare": "run-s prepare:*",
     "prepare:shared": "yarn workspace @templates/shared prepare",
-    "build": "run-s build:*",
+    "build": "run-s prepare build:*",
     "build:cra-with-rainbowkit": "yarn workspace @templates/cra-with-rainbowkit build",
+    "build:next-with-rainbowkit": "yarn workspace @templates/next-with-rainbowkit build",
     "start": "run-p start:*",
-    "start:cra-with-rainbowkit": "yarn workspace @templates/cra-with-rainbowkit start"
+    "start:cra-with-rainbowkit": "yarn workspace @templates/cra-with-rainbowkit start",
+    "start:next-with-rainbowkit": "yarn workspace @templates/next-with-rainbowkit dev"
   },
   "keywords": [],
   "author": "Ilya Kubariev",
