@@ -1,24 +1,17 @@
 import React from 'react';
 
-import {
-  Blockies,
-  chains,
-  ChakraProviderWithTheme,
-  createWagmiClient,
-} from '@templates/shared';
+import { Blockies, ChakraProviderWithTheme } from '@templates/shared';
 
 import { WagmiConfig } from 'wagmi';
-import { rainbowConnectors } from '../../constants';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
-
-const wagmiClient = createWagmiClient(rainbowConnectors);
+import { rainbowKitWagmiClient, chains } from '../../constants/wagmiClient';
 
 export const RainbowKitTemplateProviders: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   return (
     <ChakraProviderWithTheme>
-      <WagmiConfig client={wagmiClient}>
+      <WagmiConfig client={rainbowKitWagmiClient}>
         <RainbowKitProvider
           chains={chains}
           modalSize="compact"

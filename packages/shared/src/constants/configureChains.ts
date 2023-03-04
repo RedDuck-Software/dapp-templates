@@ -1,18 +1,33 @@
-import { configureChains, Connector, createClient } from 'wagmi';
+import {
+  Chain,
+  ChainProviderFn,
+  configureChains,
+  Connector,
+  createClient,
+} from 'wagmi';
 import { SUPPORTED_NETWORKS } from './networks';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { publicProvider } from 'wagmi/providers/public';
+import { Provider, WebSocketProvider } from '@wagmi/core';
 
-export const { chains, provider } = configureChains(SUPPORTED_NETWORKS, [
-  jsonRpcProvider({
-    priority: 0,
-    rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }),
-  }),
-  publicProvider({ priority: 1 }),
-]);
+type SupportedChain = (typeof SUPPORTED_NETWORKS)[number];
 
-export const createWagmiClient = (
-  connectors: Connector[] | (() => Connector[]),
+export const configureChainsWithProviders = <
+  TProvider extends Provider = Provider,
+  TWebSocketProvider extends WebSocketProvider = WebSocketProvider,
+>(
+  providers: ChainProviderFn<SupportedChain, TProvider, TWebSocketProvider>[],
+) =>
+  configureChains<SupportedChain, TProvider, TWebSocketProvider>(
+    SUPPORTED_NETWORKS,
+    providers,
+  );
+
+export const createWagmiClientWithParams = <
+  TProvider extends Provider = Provider,
+>(
+  connectors: (() => Connector[]) | Connector[],
+  provider: ((config: { chainId?: number }) => TProvider) | TProvider,
 ) =>
   createClient({
     autoConnect: true,

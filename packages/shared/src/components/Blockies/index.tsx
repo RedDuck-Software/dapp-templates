@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import './types';
 import { renderIcon } from '@download/blockies';
 import { isAddress } from '@ethersproject/address';
 import { Image } from '@chakra-ui/react';
